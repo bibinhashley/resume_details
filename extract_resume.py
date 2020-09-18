@@ -11,6 +11,13 @@ headers_para is a code that I found on medium that can extract pdf and diffrenti
 in that pdf so that I could extract the headings from the pdf. It outputs as a list of sentences.
 '''
 
+'''
+I couldn't extract address from resume because phone number was not in the right format in the sample pdf which I
+worked on and address was madeup one. If it was an original place, I could use spacy to recognize the GPR entity
+or regular expression to extract using that pattern of address and mobile number
+
+'''
+
 
 # Here am using sys.argv built in library to iterate through arguments that passed at commandline
 # I tried using argparse but it wasn't successful in this case
@@ -64,6 +71,7 @@ def main():
 
     resume['Name'] = extract_name(doc)
     resume['Email'] = extract_email(resume_text)[0]
+    # resume['Mobile']=extract_mobilenumber(resume_text)
     extract_content(resume_text)
 
     # Here is the main output which dumps the resume dictionary and converted it to a json file with indent 2
@@ -86,6 +94,13 @@ def extract_email(resume_text):
     # Here i used regex to find the email addresses in the pdf.
     email = re.findall(r'[\w\.-]+@[\w\.-]+', resume_text)
     return email
+
+
+# I didn't use this function since the given pdf has no actual mobile number
+def extract_mobilenumber(resume_text):
+    mobile = re.findall(
+        r'(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})', resume_text)
+    return mobile
 
 
 def extract_content(resume_text):
