@@ -2,7 +2,6 @@ import spacy
 import headers_para
 import fitz
 import json
-import os
 import sys
 import re
 
@@ -38,9 +37,6 @@ else:
     print('--input <pdf path with name> --output <json ouput path with naem>')
     sys.exit()
 
-
-current_dir = os.path.dirname(os.path.realpath(__file__))
-output_dir = os.path.join(current_dir, "Output")
 headers = headers_para.headers(doc)
 
 ''' 
