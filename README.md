@@ -2,6 +2,11 @@
 This is python script which can parse resume pdfs
 
 You can run this extract_resume.py code to extract details from resume pdf
+
+```
+pip install -r requirements.txt
+```
+
 ```
 python extract_resume.py --input <pdf path and name> --ouput <json output name>
 ```
